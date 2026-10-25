@@ -1,0 +1,18 @@
+@model BookingForm
+@{ ViewData["Title"] = "Book tickets"; var show = Model.Screening!; var closed = show.StartAt <= CairoClock.Now || show.Available <= 0; }
+<div class="eyebrow text-primary mb-2">YOUR MOVIE NIGHT, SORTED</div><h1 class="mb-4">Book your tickets</h1>
+<div class="row g-4"><div class="col-lg-7"><div class="card"><div class="card-body p-4">
+<h2 class="h5 mb-3">Your details</h2>
+<form asp-action="Create" asp-route-id="@Model.ShowtimeId" method="post" data-booking-form data-price="@show.Price.ToString(CultureInfo.InvariantCulture)">
+<div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary" role="alert"></div>
+<input asp-for="ShowtimeId" type="hidden" /><input asp-for="SubmissionToken" type="hidden" />
+<div class="mb-3"><label asp-for="CustomerName" class="form-label"></label><input asp-for="CustomerName" class="form-control" autocomplete="name" /><span asp-validation-for="CustomerName" class="text-danger small"></span></div>
+<div class="mb-3"><label asp-for="Phone" class="form-label"></label><input asp-for="Phone" type="tel" class="form-control" autocomplete="tel" placeholder="e.g. 01012345678" /><span asp-validation-for="Phone" class="text-danger small"></span></div>
+<div class="mb-4"><label asp-for="Quantity" class="form-label">Number of tickets</label><input asp-for="Quantity" class="form-control" type="number" min="1" max="10" /><span asp-validation-for="Quantity" class="text-danger small"></span><div class="form-text">1-10 tickets per booking. Tickets have no assigned seats.</div></div>
+<div class="d-flex justify-content-between border-top pt-3 mb-4"><span class="fw-semibold">Total</span><strong class="text-primary" data-booking-total>@((show.Price * Model.Quantity).ToString("N2")) EGP</strong></div>
+@if (closed) { <div class="alert alert-warning">@(show.StartAt <= CairoClock.Now ? "This screening has already started." : "This screening is sold out.") Please choose another screening.</div> }
+<button class="btn btn-primary w-100" type="submit" disabled="@closed"><i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>Confirm booking</button>
+<p class="small text-body-secondary mt-3 mb-0">No online payment is collected. Keep your confirmation code and bring your printable ticket.</p>
+</form></div></div></div>
+<div class="col-lg-5"><aside class="card booking-summary"><div class="card-header"><h2 class="h5 mb-0">Your screening</h2></div><div class="card-body"><span class="badge badge-subtle-primary mb-3">CINEMA TICKET</span><h3 class="h4">@show.MovieTitle</h3><dl class="screening-summary"><dt>Cinema</dt><dd>@show.CinemaName</dd><dt>Address</dt><dd>@show.Address</dd><dt>Date &amp; time</dt><dd>@CairoClock.Display(show.StartAt)<span class="small d-block text-body-secondary">Cairo local time</span></dd><dt>Price per ticket</dt><dd>@show.Price.ToString("N2") EGP</dd><dt>Available tickets</dt><dd>@show.Available</dd></dl><a asp-controller="Movies" asp-action="Index" class="small">Explore other screenings</a></div></aside></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

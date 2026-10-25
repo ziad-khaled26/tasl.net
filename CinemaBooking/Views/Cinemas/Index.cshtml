@@ -1,0 +1,5 @@
+@model IReadOnlyList<Cinema>
+@{ ViewData["Title"] = "Our cinemas"; }
+<div class="eyebrow text-primary mb-2">FIND YOUR PLACE IN THE STORY</div><h1>Our cinemas</h1><p class="text-body-secondary mb-4">Choose a location and discover its upcoming programme.</p>
+<div class="row g-4">@foreach (var cinema in Model) { <div class="col-md-6 col-lg-4"><article class="card h-100 overflow-hidden"><img src="@cinema.ImagePath" alt="@cinema.Name cinema image" class="cinema-image" /><div class="card-body d-flex flex-column"><h2 class="h5">@cinema.Name</h2><p class="small text-body-secondary"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>@cinema.Address</p><p class="small movie-description">@cinema.Description</p><a class="btn btn-falcon-primary mt-auto" asp-action="Details" asp-route-id="@cinema.Id">View screenings <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a></div></article></div> }</div>
+@if (Model.Count == 0) { <div class="card"><div class="card-body empty-state">Cinema locations will appear here soon.</div></div> }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head><partial name="_Head" /></head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<header class="public-header no-print">
+<nav class="navbar navbar-expand-md container py-3" aria-label="Main navigation">
+<a class="navbar-brand brand" asp-area="" asp-controller="Home" asp-action="Index"><span class="brand-icon"><i class="fas fa-film" aria-hidden="true"></i></span> Cinema<span>Booking</span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="mainNav">
+<ul class="navbar-nav ms-auto align-items-md-center gap-md-3">
+<li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+<li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
+<li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Cinemas" asp-action="Index">Cinemas</a></li>
+<li class="nav-item"><a class="btn btn-falcon-default btn-sm my-2 my-md-0" asp-area="Admin" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-sliders-h me-2" aria-hidden="true"></i>Administration</a></li>
+</ul>
+</div>
+</nav>
+</header>
+<main id="main" class="container public-main py-4 py-lg-5"><partial name="_Messages" />@RenderBody()</main>
+<footer class="container py-4 border-top no-print"><div class="d-flex flex-wrap justify-content-between gap-2 text-body-secondary small"><span>CinemaBooking | Your next story awaits.</span><span>Screening times: Cairo | Prices in EGP</span></div></footer>
+<partial name="_Scripts" />
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

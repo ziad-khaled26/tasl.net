@@ -1,0 +1,14 @@
+@model ShowtimeForm
+@{ ViewData["Title"] = Model.Id == 0 ? "Create showtime" : "Edit showtime"; }
+<h1 class="h3 mb-4">@ViewData["Title"]</h1><div class="card form-card"><div class="card-body p-4">
+@if (Model.BookedTickets > 0) { <div class="alert alert-info">@Model.BookedTickets tickets are booked. Movie, cinema, time and price are fixed. You may adjust capacity without going below booked tickets.</div> }
+<form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" method="post">
+<input asp-for="Id" type="hidden" /><input asp-for="RowVersion" type="hidden" />
+<div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary" role="alert"></div>
+<div class="mb-3"><label asp-for="MovieId" class="form-label"></label><select asp-for="MovieId" asp-items="Model.Movies" class="form-select"><option value="">Choose a movie</option></select><span asp-validation-for="MovieId" class="text-danger small"></span></div>
+<div class="mb-3"><label asp-for="CinemaId" class="form-label"></label><select asp-for="CinemaId" asp-items="Model.Cinemas" class="form-select"><option value="">Choose a cinema</option></select><span asp-validation-for="CinemaId" class="text-danger small"></span></div>
+<div class="mb-3"><label asp-for="StartAt" class="form-label"></label><input asp-for="StartAt" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" /><span asp-validation-for="StartAt" class="text-danger small"></span><div class="form-text">Enter Cairo local time. Times during ambiguous or skipped daylight saving transitions are rejected.</div></div>
+<div class="row"><div class="col-sm-6 mb-4"><label asp-for="TicketPrice" class="form-label"></label><input asp-for="TicketPrice" type="number" min="1" step="0.01" class="form-control" /><span asp-validation-for="TicketPrice" class="text-danger small"></span></div><div class="col-sm-6 mb-4"><label asp-for="Capacity" class="form-label"></label><input asp-for="Capacity" type="number" class="form-control" /><span asp-validation-for="Capacity" class="text-danger small"></span></div></div>
+<button type="submit" class="btn btn-primary">Save showtime</button><a asp-action="Index" class="btn btn-falcon-default ms-2">Cancel</a>
+</form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

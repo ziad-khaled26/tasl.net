@@ -1,0 +1,5 @@
+@model CinemaDetails
+@{ ViewData["Title"] = Model.Cinema.Name; }
+<a asp-action="Index" class="small d-inline-block mb-3"><i class="fas fa-arrow-left me-2" aria-hidden="true"></i>All cinemas</a>
+<div class="card mb-5 overflow-hidden"><div class="row g-0"><div class="col-md-5"><img src="@Model.Cinema.ImagePath" class="cinema-detail-image" alt="@Model.Cinema.Name" /></div><div class="col-md-7"><div class="card-body p-4 p-lg-5"><div class="eyebrow text-primary mb-2">YOUR MOVIE NIGHT DESTINATION</div><h1 class="h2">@Model.Cinema.Name</h1><p class="text-primary"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>@Model.Cinema.Address</p><p class="text-body-secondary preserve-lines">@Model.Cinema.Description</p></div></div></div></div>
+<h2 class="h3 mb-3">Upcoming screenings</h2><partial name="_Screenings" model="Model.Screenings" />

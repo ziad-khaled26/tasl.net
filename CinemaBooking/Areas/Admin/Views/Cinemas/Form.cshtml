@@ -1,0 +1,13 @@
+@model CinemaForm
+@{ ViewData["Title"] = Model.Id == 0 ? "Create cinema" : "Edit cinema"; }
+<h1 class="h3 mb-4">@ViewData["Title"]</h1>
+<div class="card form-card"><div class="card-body p-4">
+<form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+<input asp-for="Id" type="hidden" /><div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary" role="alert"></div>
+<div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control" /><span asp-validation-for="Name" class="text-danger small"></span></div>
+<div class="mb-3"><label asp-for="Address" class="form-label"></label><input asp-for="Address" class="form-control" /><span asp-validation-for="Address" class="text-danger small"></span></div>
+<div class="mb-3"><label asp-for="Description" class="form-label"></label><textarea asp-for="Description" rows="5" class="form-control"></textarea><span asp-validation-for="Description" class="text-danger small"></span></div>
+<partial name="_ImageUpload" model="Model" />
+<button type="submit" class="btn btn-primary">Save cinema</button><a asp-action="Index" class="btn btn-falcon-default ms-2">Cancel</a>
+</form></div></div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

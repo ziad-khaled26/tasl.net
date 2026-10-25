@@ -1,0 +1,12 @@
+@model MovieBrowse
+@{ ViewData["Title"] = "Movies"; }
+<div class="eyebrow text-primary mb-2">MAKE TIME FOR A GREAT STORY</div><h1 class="mb-2">Explore movies</h1><p class="text-body-secondary mb-4">Your next favourite is just a screening away.</p>
+<form asp-action="Index" method="get" class="card mb-4"><div class="card-body row g-3 align-items-end">
+<div class="col-md-5"><label asp-for="Search" class="form-label">Movie title</label><input asp-for="Search" class="form-control" placeholder="Search for a movie" /></div>
+<div class="col-sm-6 col-md-3"><label asp-for="Genre" class="form-label"></label><select asp-for="Genre" class="form-select"><option value="">All genres</option>@foreach (var genre in Model.Genres) { <option value="@genre">@genre</option> }</select></div>
+<div class="col-sm-6 col-md-3"><label asp-for="CinemaId" class="form-label">Cinema</label><select asp-for="CinemaId" asp-items="Model.Cinemas" class="form-select"><option value="">All cinemas</option></select></div>
+<div class="col-md-1"><button class="btn btn-primary w-100" aria-label="Search movies"><i class="fas fa-search" aria-hidden="true"></i></button></div>
+<div class="col-12 small text-body-secondary">@Model.Movies.Count movies found <a asp-action="Index" class="ms-2">Reset filters</a></div>
+</div></form>
+@if (Model.Movies.Count > 0) { <partial name="_MovieCards" model="Model.Movies" /> }
+else { <div class="card"><div class="card-body empty-state"><i class="fas fa-search fa-2x text-primary mb-3" aria-hidden="true"></i><h2 class="h5">No movies found</h2><p>Try another title, genre or cinema.</p><a asp-action="Index" class="btn btn-falcon-primary">Browse all movies</a></div></div> }

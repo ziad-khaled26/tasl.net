@@ -1,0 +1,8 @@
+.vs/
+**/bin/
+**/obj/
+**/__pycache__/
+Reference/Falcon/
+CinemaBooking/wwwroot/uploads/
+*.user
+*.suo

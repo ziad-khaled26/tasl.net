@@ -1,0 +1,17 @@
+@model HomePage
+@{ ViewData["Title"] = "Find your next story"; }
+<section class="cinema-hero mb-4 mb-lg-5">
+<div class="row align-items-center g-4 position-relative">
+<div class="col-lg-7"><span class="hero-kicker"><i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>THE BIG SCREEN IS CALLING</span><h1 class="display-4 fw-bold text-white mt-3 mb-3">A great story<br />starts here.</h1><p class="hero-description mb-4">Discover a new favourite. Find your cinema.<br class="d-none d-md-block" /> Make your next movie night one to remember.</p><a class="btn btn-light btn-lg" asp-controller="Movies" asp-action="Index">Explore movies <i class="fas fa-arrow-right ms-3" aria-hidden="true"></i></a><div class="hero-note mt-4"><i class="fas fa-check-circle me-2" aria-hidden="true"></i>Simple booking. Instant printable ticket.</div></div>
+<div class="col-lg-5 d-none d-lg-block"><div class="hero-posters">@foreach (var movie in Model.Featured.Take(3)) { <img src="@movie.PosterPath" alt="@movie.Title sample poster" /> }</div></div>
+</div>
+</section>
+<div class="row g-3 mb-5">
+<div class="col-4"><div class="card h-100"><div class="card-body stat-public"><span class="stat-icon"><i class="fas fa-building" aria-hidden="true"></i></span><div><strong>@Model.Cinemas</strong><span>Cinemas</span></div></div></div></div>
+<div class="col-4"><div class="card h-100"><div class="card-body stat-public"><span class="stat-icon"><i class="fas fa-film" aria-hidden="true"></i></span><div><strong>@Model.Movies</strong><span>Movies</span></div></div></div></div>
+<div class="col-4"><div class="card h-100"><div class="card-body stat-public"><span class="stat-icon"><i class="fas fa-users" aria-hidden="true"></i></span><div><strong>@Model.Actors</strong><span>Actors</span></div></div></div></div>
+</div>
+<div class="d-flex align-items-end justify-content-between mb-4 gap-3"><div><div class="eyebrow text-primary mb-2">DISCOVER SOMETHING GREAT</div><h2 class="h3 mb-0">On the big screen</h2></div><a class="small fw-semibold" asp-controller="Movies" asp-action="Index">All movies <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a></div>
+@if (Model.Featured.Count > 0) { <partial name="_MovieCards" model="Model.Featured" /> }
+else { <div class="card"><div class="card-body empty-state">The movie programme is being prepared. Please check back soon.</div></div> }
+<section class="card mt-5"><div class="card-body p-4 d-flex flex-wrap justify-content-between align-items-center gap-3"><div><h2 class="h5">A cinema for every movie night</h2><p class="mb-0 text-body-secondary">Explore locations and see what's playing near you.</p></div><a class="btn btn-falcon-default" asp-controller="Cinemas" asp-action="Index">Find a cinema</a></div></section>

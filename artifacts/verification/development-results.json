@@ -1,0 +1,17 @@
+{
+  "url": "http://localhost:5207",
+  "home_status": 200,
+  "home_counts": {
+    "cinemas": 3,
+    "movies": 6,
+    "actors": 8
+  },
+  "admin_counts": {
+    "cinemas": 3,
+    "movies": 6,
+    "actors": 8,
+    "bookings": 0,
+    "booked_tickets": 0
+  },
+  "javascript_errors": []
+}

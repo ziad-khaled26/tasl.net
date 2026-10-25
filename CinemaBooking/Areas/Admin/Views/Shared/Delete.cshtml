@@ -1,0 +1,6 @@
+@model DeletePage
+@{ ViewData["Title"] = "Delete record"; }
+<div class="card form-card"><div class="card-body p-4"><span class="badge badge-subtle-danger mb-3">DELETE RECORD</span><h1 class="h3">Delete @Model.Name?</h1>
+@if (Model.BlockReason is not null) { <div class="alert alert-warning mt-3">@Model.BlockReason</div><a asp-action="Index" class="btn btn-falcon-default">Back to list</a> }
+else { <p class="text-body-secondary">This removes the record permanently. Confirm only if you no longer need it.</p><form asp-action="Delete" asp-route-id="@Model.Id" method="post"><input type="hidden" name="id" value="@Model.Id" /><div asp-validation-summary="All" class="text-danger"></div><button type="submit" class="btn btn-danger">Delete record</button><a asp-action="Index" class="btn btn-falcon-default ms-2">Cancel</a></form> }
+</div></div>

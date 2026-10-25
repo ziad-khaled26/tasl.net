@@ -1,0 +1,67 @@
+{
+  "run_utc": "2026-10-25T19:46:10.603655+00:00",
+  "browser": "Installed Google Chrome via Playwright",
+  "layouts": [
+    {
+      "page": "home",
+      "viewport": "desktop",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "movie",
+      "viewport": "desktop",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "booking",
+      "viewport": "desktop",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "admin",
+      "viewport": "desktop",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "movie-form",
+      "viewport": "desktop",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "home",
+      "viewport": "mobile",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "movie",
+      "viewport": "mobile",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "booking",
+      "viewport": "mobile",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "admin",
+      "viewport": "mobile",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "movie-form",
+      "viewport": "mobile",
+      "horizontal_overflow": false
+    },
+    {
+      "page": "showtimes",
+      "viewport": "mobile",
+      "horizontal_overflow": false
+    }
+  ],
+  "javascript_errors": [],
+  "failed_requests": [],
+  "public_booking": "passed",
+  "admin_actor_crud": "passed",
+  "print_ticket_pdf": "passed",
+  "mobile_navigation": "passed"
+}

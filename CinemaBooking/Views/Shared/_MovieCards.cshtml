@@ -1,0 +1,13 @@
+@model IEnumerable<Movie>
+<div class="row g-4">
+@foreach (var movie in Model)
+{
+<div class="col-sm-6 col-lg-4"><article class="card movie-card h-100 overflow-hidden">
+<a asp-area="" asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id" class="poster-link"><img class="movie-poster" src="@movie.PosterPath" alt="Poster for @movie.Title" loading="lazy" /><span class="poster-cta"><i class="fas fa-ticket-alt me-2" aria-hidden="true"></i>Choose a screening</span></a>
+<div class="card-body d-flex flex-column"><div class="d-flex justify-content-between align-items-center mb-2"><span class="badge badge-subtle-primary">@movie.Genre</span><span class="small text-body-secondary">@movie.DurationMinutes min</span></div>
+<h2 class="h5 mb-2"><a class="text-body-emphasis" asp-area="" asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">@movie.Title</a></h2>
+<p class="small text-body-secondary movie-description">@movie.Description</p>
+<a class="btn btn-falcon-primary mt-auto" asp-area="" asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">Book tickets <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i></a>
+</div></article></div>
+}
+</div>

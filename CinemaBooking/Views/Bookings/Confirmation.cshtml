@@ -1,0 +1,4 @@
+@model Booking
+@{ ViewData["Title"] = "Booking confirmed"; }
+<div class="text-center mb-4 no-print"><div class="confirmation-check mb-3"><i class="fas fa-check" aria-hidden="true"></i></div><h1>You're going to the movies!</h1><p class="text-body-secondary">Booking confirmed. Save this page or print your ticket.</p><div class="d-flex flex-wrap justify-content-center gap-2"><button type="button" class="btn btn-primary" data-print><i class="fas fa-print me-2" aria-hidden="true"></i>Print ticket</button><a class="btn btn-falcon-default" asp-controller="Movies" asp-action="Index">Explore more movies</a></div><p class="small text-body-secondary mt-3">Keep this private link safe; it gives access to your ticket.</p></div>
+<partial name="_Ticket" model="Model" />

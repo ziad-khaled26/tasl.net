@@ -1,0 +1,16 @@
+test_01_public_navigation_and_filters (__main__.CinemaFlows.test_01_public_navigation_and_filters) ... ok
+test_02_cinema_crud_upload_and_validation (__main__.CinemaFlows.test_02_cinema_crud_upload_and_validation) ... ok
+test_03_reject_unsafe_images (__main__.CinemaFlows.test_03_reject_unsafe_images) ... ok
+test_04_actor_movie_cast_crud (__main__.CinemaFlows.test_04_actor_movie_cast_crud) ... ok
+test_05_showtime_validation_crud_and_concurrency 
+(__main__.CinemaFlows.test_05_showtime_validation_crud_and_concurrency) ... ok
+test_06_validation_and_related_id_tampering (__main__.CinemaFlows.test_06_validation_and_related_id_tampering) ... ok
+test_07_booking_prg_authoritative_total_and_duplicates 
+(__main__.CinemaFlows.test_07_booking_prg_authoritative_total_and_duplicates) ... ok
+test_08_booked_showtime_and_reference_guards (__main__.CinemaFlows.test_08_booked_showtime_and_reference_guards) ... ok
+test_09_expired_and_full_screenings (__main__.CinemaFlows.test_09_expired_and_full_screenings) ... ok
+test_10_concurrent_last_tickets (__main__.CinemaFlows.test_10_concurrent_last_tickets) ... ok
+test_11_concurrent_duplicate_submission (__main__.CinemaFlows.test_11_concurrent_duplicate_submission) ... ok
+----------------------------------------------------------------------
+Ran 11 tests in 6.350s
+OK

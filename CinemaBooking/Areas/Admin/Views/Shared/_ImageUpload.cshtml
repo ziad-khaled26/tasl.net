@@ -1,0 +1,3 @@
+@model ImageForm
+@if (!string.IsNullOrEmpty(Model.ExistingImage)) { <div class="mb-3"><img src="@Model.ExistingImage" class="edit-preview rounded" alt="Current image" /><p class="form-text">Leave the upload empty to keep this image.</p></div> }
+<div class="mb-4"><label asp-for="Image" class="form-label"></label><input asp-for="Image" type="file" class="form-control" accept="image/jpeg,image/png,image/webp" /><span asp-validation-for="Image" class="text-danger small"></span><div class="form-text">Raster images only. A local sample placeholder is used when no image is supplied.</div></div>

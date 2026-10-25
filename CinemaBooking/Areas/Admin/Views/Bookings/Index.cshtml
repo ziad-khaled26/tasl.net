@@ -1,0 +1,20 @@
+@model BookingSearch
+@{ ViewData["Title"] = "Bookings"; }
+<h1 class="h3">Bookings</h1><p class="text-body-secondary small mb-4">Search tickets and review their original booked price. Booking history is preserved.</p>
+<form asp-action="Index" method="get" class="card mb-4"><div class="card-body row g-3 align-items-end">
+<div class="col-md-4"><label asp-for="Search" class="form-label">Code, name, phone or movie</label><input asp-for="Search" class="form-control" /></div>
+<div class="col-md-3"><label asp-for="CinemaId" class="form-label">Cinema</label><select asp-for="CinemaId" asp-items="Model.Cinemas" class="form-select"><option value="">All cinemas</option></select></div>
+<div class="col-6 col-md-2"><label asp-for="From" class="form-label">Screening from</label><input asp-for="From" type="date" class="form-control" /></div>
+<div class="col-6 col-md-2"><label asp-for="To" class="form-label">Screening to</label><input asp-for="To" type="date" class="form-control" /></div>
+<div class="col-md-1"><button class="btn btn-primary w-100" aria-label="Search bookings"><i class="fas fa-search" aria-hidden="true"></i></button></div>
+@if (Model.ShowtimeId.HasValue) { <input asp-for="ShowtimeId" type="hidden" /><div class="small">Filtered to screening #@Model.ShowtimeId</div> }
+<div class="col-12 small">@Model.Total bookings found <a asp-action="Index" class="ms-2">Reset filters</a></div>
+</div></form>
+<div class="card"><div class="table-responsive"><table class="table table-hover mb-0"><thead><tr><th>Code</th><th>Customer</th><th>Screening</th><th>Tickets</th><th>Total</th><th>Details</th></tr></thead><tbody>
+@foreach (var booking in Model.Bookings) { <tr><td><code>@booking.Code[..8]...</code></td><td>@booking.CustomerName<br /><span class="small text-body-secondary">@booking.Phone</span></td><td><strong>@booking.Showtime.Movie.Title</strong><br /><span class="small">@booking.Showtime.Cinema.Name<br />@CairoClock.Display(booking.Showtime.StartAt)</span></td><td>@booking.Quantity</td><td>@booking.TotalAmount.ToString("N2") EGP</td><td><a class="btn btn-falcon-default btn-sm" asp-action="Details" asp-route-id="@booking.Id">View</a></td></tr> }
+@if (Model.Bookings.Count == 0) { <tr><td colspan="6" class="text-center py-5 text-body-secondary">No bookings match these filters.</td></tr> }
+</tbody></table></div>
+<div class="card-footer d-flex justify-content-between align-items-center"><span class="small">Page @Model.Page of @Math.Max(1, (Model.Total + 19) / 20)</span><div class="d-flex gap-2">
+@if (Model.Page > 1) { <a class="btn btn-falcon-default btn-sm" asp-route-page="@(Model.Page - 1)" asp-route-search="@Model.Search" asp-route-cinemaId="@Model.CinemaId" asp-route-showtimeId="@Model.ShowtimeId" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")">Previous</a> }
+@if (Model.Page * 20 < Model.Total) { <a class="btn btn-falcon-default btn-sm" asp-route-page="@(Model.Page + 1)" asp-route-search="@Model.Search" asp-route-cinemaId="@Model.CinemaId" asp-route-showtimeId="@Model.ShowtimeId" asp-route-from="@Model.From?.ToString("yyyy-MM-dd")" asp-route-to="@Model.To?.ToString("yyyy-MM-dd")">Next</a> }
+</div></div></div>

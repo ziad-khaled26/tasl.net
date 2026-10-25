@@ -1,0 +1,10 @@
+@model IReadOnlyList<Movie>
+@{ ViewData["Title"] = "Movies"; }
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4"><div><h1 class="h3 mb-1">Movies</h1><p class="small text-body-secondary mb-0">Manage your cinema catalogue.</p></div><a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus me-2" aria-hidden="true"></i>Add movie</a></div>
+<div class="card"><div class="table-responsive"><table class="table table-hover mb-0"><thead><tr><th>Movie</th><th>Genre</th><th>Duration</th><th>Cast</th><th>Actions</th></tr></thead><tbody>
+@foreach (var item in Model)
+{
+<tr><td><div class="d-flex gap-3 align-items-center"><img class="table-thumbnail" src="@item.PosterPath" alt="@item.Title" /><strong>@item.Title</strong></div></td><td>@item.Genre</td><td>@item.DurationMinutes min</td><td>@item.MovieActors.Count actors</td><td><div class="row-actions"><a class="btn btn-falcon-default btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a><a class="btn btn-falcon-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a></div></td></tr>
+}
+@if (Model.Count == 0) { <tr><td colspan="6" class="text-center py-5">No movies yet. Add your first record to get started.</td></tr> }
+</tbody></table></div></div>
